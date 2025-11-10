@@ -23,9 +23,6 @@ jobs:
           python-version: "3.11"
       - run: |
           pip install -r backend/requirements.txt pytest
-      # 🏗️ Build Docker images
-      - name: Build Docker images
-        run: docker compose build
 
   deploy:
     needs: build-test
