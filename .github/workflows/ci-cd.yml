@@ -40,6 +40,3 @@ jobs:
       - name: Rebuild and deploy
         run: |
           docker compose up -d --build
-
-      - name: Clean up
-        run:  docker image prune -f
