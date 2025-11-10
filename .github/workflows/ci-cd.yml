@@ -44,6 +44,7 @@ jobs:
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
         run: |
-          cloudflared access ssh --hostname ssh-rpi.frmu.org --url ssh://ubuntu@ssh-rpi.frmu.org \
-            --no-verify \
-            --command "cd ~/home/ubuntu/Arm_Hackathon_Project && git pull && docker compose down && docker compose up -d"
+          cloudflared access ssh-config --hostname ssh-rpi.frmu.org > ~/.ssh/config
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh -o StrictHostKeyChecking=no ubuntu@ssh-rpi.frmu.org "cd /app && git pull && docker compose up -d --build"
