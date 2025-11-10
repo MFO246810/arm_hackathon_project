@@ -46,4 +46,4 @@ jobs:
         run: |
           cloudflared access ssh --hostname ssh-rpi.frmu.org --url ssh://ubuntu@ssh-rpi.frmu.org \
             --no-verify \
-            --command "cd ~/projects/your-app && git pull && docker compose down && docker compose up -d"
+            --command "cd ~/home/ubuntu/Arm_Hackathon_Project && git pull && docker compose down && docker compose up -d"
