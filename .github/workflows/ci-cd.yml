@@ -42,4 +42,4 @@ jobs:
           docker compose up -d --build
 
       - name: Clean up
-        run: docker image prune -f
+        run:  docker image prune -f
