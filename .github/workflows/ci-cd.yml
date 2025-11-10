@@ -41,6 +41,3 @@ jobs:
       - name: Start application
         run: |
           docker compose up -d 
-
-      - name: Clean up unused Docker data
-        run: docker system prune -af
