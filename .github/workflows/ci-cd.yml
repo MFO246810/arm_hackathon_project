@@ -1,0 +1,49 @@
+name: Arm_Hackathon_workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 🧪 Test Flask
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: |
+          pip install -r backend/requirements.txt pytest
+      # 🏗️ Build Docker images
+      - name: Build Docker images
+        run: docker compose build
+
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install cloudflared
+        run: |
+          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb -o cloudflared.deb
+          sudo dpkg -i cloudflared.deb
+
+      - name: Connect via Cloudflare SSH and deploy
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
+        run: |
+          cloudflared access ssh --hostname ssh-rpi.frmu.org --url ssh://ubuntu@ssh-rpi.frmu.org \
+            --no-verify \
+            --command "cd ~/projects/your-app && git pull && docker compose down && docker compose up -d"
