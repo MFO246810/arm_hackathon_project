@@ -29,22 +29,17 @@ jobs:
 
   deploy:
     needs: build-test
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install cloudflared
-        run: |
-          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb -o cloudflared.deb
-          sudo dpkg -i cloudflared.deb
+      - name: Stop existing containers
+        run: docker compose down || true
 
-      - name: Connect via Cloudflare SSH and deploy
-        env:
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
+      - name: Rebuild and deploy
         run: |
-          cloudflared access ssh-config --hostname ssh-rpi.frmu.org > ~/.ssh/config
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh -o StrictHostKeyChecking=no ubuntu@ssh-rpi.frmu.org "cd /app && git pull && docker compose up -d --build"
+          docker compose up -d --build
+
+      - name: Clean up
+        run: docker image prune -f
