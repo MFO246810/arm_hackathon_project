@@ -36,4 +36,11 @@ jobs:
 
       - name: Rebuild and deploy
         run: |
-          docker compose up -d --build
+          docker compose build
+          
+      - name: Start application
+        run: |
+          docker compose up -d   # <--- containers stay running in background
+
+      - name: Clean up unused Docker data
+        run: docker system prune -af
