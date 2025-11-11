@@ -31,17 +31,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Stop existing containers
-        run: docker compose down || true
-
-      - name: Rebuild and deploy
-        run: docker compose up -d --build
-
       - name: Clean up unused Docker data
         run: docker system prune -af
       
       - name: Moving html to nginx dir
         run: |
+          source /home/ubuntu/.bashrc
           ls -a
           cd frontend
           node -v
