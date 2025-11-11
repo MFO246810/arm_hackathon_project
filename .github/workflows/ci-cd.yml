@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Build Backend
-        uses: docker compose -d build up
+        run: docker compose -d build up
 
       - name: Moving html to nginx dir
         run: |
