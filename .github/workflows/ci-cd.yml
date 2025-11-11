@@ -36,7 +36,6 @@ jobs:
       
       - name: Moving html to nginx dir
         run: |
-          source /home/ubuntu/.bashrc
           ls -a
           cd frontend
           node -v
