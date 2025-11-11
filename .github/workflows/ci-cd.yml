@@ -30,9 +30,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Clean up unused Docker data
-        run: docker system prune -af
       
       - name: Moving html to nginx dir
         run: |
