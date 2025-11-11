@@ -31,6 +31,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      - name: Build Backend
+        uses: docker compose -d build up
+
       - name: Moving html to nginx dir
         run: |
           ls -a
