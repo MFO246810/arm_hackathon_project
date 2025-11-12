@@ -19,7 +19,7 @@ export function App() {
       <h1>Vite + Preact</h1>
       <div class="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          Poop is {count}
+          Linh see see is {count}
         </button>
         <p>
           Edit <code>src/app.jsx</code> and save to test HMR
