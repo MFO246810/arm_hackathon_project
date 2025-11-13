@@ -1,11 +1,15 @@
-from ollama import chat
-from ollama import ChatResponse
+from ollama import Client
 
 def query_model(Name, query):
-    response: ChatResponse = chat(model=Name,  base_url="http://localhost:11434", messages=[{
+    client = Client(
+        host='http://localhost:11434',
+        headers={'x-some-header': 'some-value'}
+    )
+    
+    response = client.chat(model='gemma3', messages=[{
         'role': 'user',
-        'content': query,
+        'content': 'Why is the sky blue?',
     },])
 
-    return response['message']['content']
+    print(response['message']['content']) 
 
