@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: |
-          pip install -r backend/requirements.txt 
+          ls -a
           cd backend
           pytest
 
