@@ -1,7 +1,8 @@
 import ollama
 
 def query_model(Name, query):
-    response = ollama.chat(
+    ollama_client = ollama.Client(url="http://localhost:11434")
+    response = ollama_client.chat(
         model=Name,
         messages=[{'role': 'user', 'content': query}]
     )
