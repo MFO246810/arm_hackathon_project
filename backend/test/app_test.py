@@ -8,11 +8,11 @@ from src.models import MODELS
 from src.llm import query_model
 
 test_case = [
-    (MODELS.DEEPSEEK, "What is the meaning of life"),
-    (MODELS.GEMMA, "What is the meaning of life"),
-    (MODELS.GRANITE, "What is the meaning of life"), 
-    (MODELS.LLAMA, "What is the meaning of life"),
-    (MODELS.PHI, "What  is the meaning of life")
+    (MODELS.DEEPSEEK.value, "What is the meaning of life"),
+    (MODELS.GEMMA.value, "What is the meaning of life"),
+    (MODELS.GRANITE.value, "What is the meaning of life"), 
+    (MODELS.LLAMA.value, "What is the meaning of life"),
+    (MODELS.PHI.value, "What  is the meaning of life")
 ]
 
 def canary_test():
