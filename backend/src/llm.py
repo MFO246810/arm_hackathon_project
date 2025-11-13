@@ -10,5 +10,5 @@ def query_model(Name, query):
         'content': query,
     },])
 
-    print(response['message']['content']) 
+    return response['message']['content']
 
