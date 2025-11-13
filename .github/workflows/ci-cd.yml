@@ -22,7 +22,8 @@ jobs:
         with:
           python-version: "3.11"
       - run: |
-          pip install -r backend/requirements.txt pytest
+          pip install -r backend/requirements.txt 
+          pytest
 
   deploy:
     needs: build-test
