@@ -1,25 +1,36 @@
-import os
-import sys
+import json
+from unittest.mock import patch
+from src.app import app
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+def test_api_success():
+    """Test when valid JSON is provided and query_model returns a value."""
+    client = app.test_client()
 
-import pytest
-from src.models import MODELS
-from src.llm import query_model
+    with patch("src.app.query_model") as mock_query:
+        mock_query.return_value = "mocked response"
 
-test_case = [
-    (MODELS.DEEPSEEK.value, "What is the meaning of life"),
-    (MODELS.GEMMA.value, "What is the meaning of life"),
-    (MODELS.GRANITE.value, "What is the meaning of life"), 
-    (MODELS.LLAMA.value, "What is the meaning of life"),
-    (MODELS.PHI.value, "What  is the meaning of life")
-]
+        response = client.get(
+            "/api",
+            data=json.dumps({"model": "qwen", "query": "Hello"}),
+            content_type="application/json"
+        )
 
-def canary_test():
-    assert True
+        assert response.status_code == 200
+        body = response.get_json()
 
-@pytest.mark.parametrize("model, query", test_case)
-def test_model(model, query):
-    result = query_model(model, query)
+        assert body["Message"] == "Sucess"
+        assert body["Response"] == "mocked response"
+        mock_query.assert_called_once_with("qwen", "Hello")
 
-    assert result != None
+
+def test_api_not_json():
+    """Test when the request body is not JSON."""
+    client = app.test_client()
+
+    response = client.get("/api", data="not json")
+
+    assert response.status_code == 400
+    body = response.get_json()
+
+    assert body["Message"] == "Failure"
+    assert body["Response"] == "Request must be JSON"
