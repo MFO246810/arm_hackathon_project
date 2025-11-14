@@ -3,7 +3,7 @@ from src.llm import query_model
 
 app = Flask(__name__)
 
-@app.route("/api", methodS=["POST"])
+@app.route("/api", methods=["POST"])
 def Model_Call():
     if request.is_json:
         data = request.get_json()
