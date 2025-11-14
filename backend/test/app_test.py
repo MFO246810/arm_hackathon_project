@@ -9,7 +9,7 @@ def test_api_success():
     with patch("src.app.query_model") as mock_query:
         mock_query.return_value = "mocked response"
 
-        response = client.get(
+        response = client.post(
             "/api",
             data=json.dumps({"model": "qwen", "query": "Hello"}),
             content_type="application/json"
@@ -27,7 +27,7 @@ def test_api_not_json():
     """Test when the request body is not JSON."""
     client = app.test_client()
 
-    response = client.get("/api", data="not json")
+    response = client.post("/api", data="not json")
 
     assert response.status_code == 400
     body = response.get_json()
