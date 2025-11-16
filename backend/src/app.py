@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 from src.llm import query_model
+from src.models import MODELS
 
 app = Flask(__name__)
 
-@app.route("/api", methods=["POST"])
+@app.route("/api/call", methods=["POST"])
 def Model_Call():
     if request.is_json:
         data = request.get_json()
@@ -18,6 +19,19 @@ def Model_Call():
         return jsonify({"Response": "Request must be JSON", 
                         "Message": "Failure"
                         }), 400
+    
+@app.route("/api/list", methods=["GET"])
+def Model_List():
+
+    Models_List = [
+        MODELS.DEEPSEEK.value,
+        MODELS.GEMMA.value,
+        MODELS.GRANITE.value,
+        MODELS.LLAMA.value,
+        MODELS.PHI.value
+    ]
+
+    return jsonify({"Response": Models_List, "Message": "Sucess"}), 200
     
 
 if __name__ == '__main__':  

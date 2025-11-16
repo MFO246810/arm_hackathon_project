@@ -1,0 +1,14 @@
+.query-bar{
+    background-color: #fff;
+    color: #000000;
+    border-width: 2px;
+    border-radius: 8px;
+    resize: none;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.query-bar:focus {
+  outline: none; 
+  border-color: #555;
+}
