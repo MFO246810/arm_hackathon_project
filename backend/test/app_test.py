@@ -49,5 +49,8 @@ def test_api_List_Models_sucess():
         MODELS.PHI.value
     ]
 
-    assert response == Models_List
+    body = response.get_json()
+    assert response.status_code == 200
+    assert body["Response"] == Models_List
+    assert body["Message"] == "Sucess"
 

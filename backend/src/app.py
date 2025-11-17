@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
-from src.llm import query_model
-from src.models import MODELS
+from llm import query_model
+from models import MODELS
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173", "methods": ["GET", "POST"], "allow_headers": ["Content-Type"]}})
 
 @app.route("/api/call", methods=["POST"])
 def Model_Call():

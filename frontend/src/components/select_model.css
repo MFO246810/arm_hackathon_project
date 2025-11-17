@@ -1,0 +1,17 @@
+.model-select-wrapper select {
+  width: 150px;
+  padding: 6px 8px;
+  border: 2px solid #555;
+  border-radius: 5px;
+  background: #fafafa;
+  color: #555;
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  appearance: none;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.select-wrapper select:hover {
+  border-color: #888;
+}

@@ -5,8 +5,7 @@ export default function Query_bar(){
     return(
         <>
             <div>
-                <label for="query_bar" class="query-bar-label">Enter your query: </label>
-                <textarea id="query_bar" rows="3" cols="90" class="query-bar"></textarea>
+                <textarea id="query_bar" rows="2" cols="90" class="query-bar" placeholder="Enter Your Query for the Model"></textarea>
             </div>
         </>
     )
