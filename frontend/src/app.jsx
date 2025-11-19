@@ -8,14 +8,12 @@ export function App() {
 
   return (
     <>
-      <div>
         <Navbar />
 
         <Router>
           <Query_Page path="/" />
         </Router>
 
-      </div>
       
 
     </>

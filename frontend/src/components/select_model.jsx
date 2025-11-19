@@ -2,9 +2,13 @@
  import { h } from 'preact';
  import { useState, useEffect } from 'preact/hooks';
  
- export default function Select_Model(){
+ export default function Select_Model({ value, onChange }){
     const [models, setmodels] = useState([]);
     const [loading, setloading] = useState(true)
+
+    const handleChange = (e) => {
+        onChange(e.target.value);
+    };
 
     const GetModels = async () => {
         try{
@@ -39,8 +43,8 @@
     return(
         <>
             <div class="model-select-wrapper">
-                    <select class="Models-Select" name="Models">
-                        <option value=""> Select an LLM model </option>
+                    <select class="Models-Select" value={value} onChange={handleChange} name="Models">
+                        <option value=""> Select a model </option>
                         {
                             models.map(item => (
                                 <option value={item}>{item}</option>
