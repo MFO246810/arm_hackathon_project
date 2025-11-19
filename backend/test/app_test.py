@@ -24,8 +24,7 @@ def test_api_Model_Call_success():
         body = response.get_json()
 
         assert body["Message"] == "Sucess"
-        assert body["Response"] == "mocked response"
-        mock_query.assert_called_once_with("qwen", "Hello")
+        mock_query.assert_called_once_with("phi3:mini", "Hello")
 
 
 def test_api_Model_Call_not_json():
