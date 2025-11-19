@@ -16,7 +16,7 @@ def test_api_Model_Call_success():
 
         response = client.post(
             "/api/call",
-            data=json.dumps({"model": "qwen", "query": "Hello"}),
+            data=json.dumps({"model": "phi3:mini", "query": "Hello"}),
             content_type="application/json"
         )
 
