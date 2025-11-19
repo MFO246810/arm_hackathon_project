@@ -4,8 +4,8 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 
 import pytest
-from src.models import MODELS
-from src.llm import query_model
+from models import MODELS
+from llm import query_model
 
 test_case = [
     (MODELS.DEEPSEEK.value, "What is the meaning of life"),

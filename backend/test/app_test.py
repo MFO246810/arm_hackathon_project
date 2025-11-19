@@ -4,8 +4,8 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 import json
 from unittest.mock import patch
-from src.app import app
-from src.models import MODELS
+from app import app
+from models import MODELS
 
 def test_api_Model_Call_success():
     """Test when valid JSON is provided and query_model returns a value."""
