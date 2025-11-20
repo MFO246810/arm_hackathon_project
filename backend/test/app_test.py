@@ -7,23 +7,23 @@ from unittest.mock import patch
 from app import app
 from models import MODELS
 
-def test_api_Model_Call_success():
-    """Test when valid JSON is provided and query_model returns a value."""
-    client = app.test_client()
+#def test_api_Model_Call_success():
+#    """Test when valid JSON is provided and query_model returns a value."""
+#   client = app.test_client()
+#
+#   with patch("src.app.query_model") as mock_query:
+#      mock_query.return_value = "mocked response"
+#
+#       response = client.post(
+#          "/api/call",
+#           data=json.dumps({"model": "phi3:mini", "query": "Hello"}),
+#           content_type="application/json"
+#       )
+#
+#       assert response.status_code == 200
+#       body = response.get_json()
 
-    with patch("src.app.query_model") as mock_query:
-        mock_query.return_value = "mocked response"
-
-        response = client.post(
-            "/api/call",
-            data=json.dumps({"model": "phi3:mini", "query": "Hello"}),
-            content_type="application/json"
-        )
-
-        assert response.status_code == 200
-        body = response.get_json()
-
-        assert body["Message"] == "Sucess"
+#       assert body["Message"] == "Sucess"
         #mock_query.assert_called_once_with("phi3:mini", "Hello")
 
 

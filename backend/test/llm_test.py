@@ -10,17 +10,17 @@ from llm import query_model
 url = "http://localhost:11434"
 
 test_case = [
-    (MODELS.DEEPSEEK.value, "What is the meaning of life"),
-    (MODELS.GEMMA.value, "What is the meaning of life"),
-    (MODELS.GRANITE.value, "What is the meaning of life"), 
-    (MODELS.LLAMA.value, "What is the meaning of life"),
-    (MODELS.PHI.value, "What  is the meaning of life")
+    (MODELS.DEEPSEEK.value, "What is the meaning of life", url),
+    (MODELS.GEMMA.value, "What is the meaning of life", url),
+    (MODELS.GRANITE.value, "What is the meaning of life", url), 
+    (MODELS.LLAMA.value, "What is the meaning of life", url),
+    (MODELS.PHI.value, "What  is the meaning of life", url)
 ]
 
 def canary_test():
     assert True
 
-@pytest.mark.parametrize("model, query", test_case)
+@pytest.mark.parametrize("model, query, url", test_case)
 def test_model(model, query, url):
     result = query_model(model, query, url)
 
