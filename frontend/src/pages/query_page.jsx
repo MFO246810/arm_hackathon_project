@@ -18,8 +18,9 @@ export default function Query_Page(){
                 },
                 body: JSON.stringify({ model: model, query: query})})
 
-            if(response.ok){
-                const data = await response.json()
+            const data = await response.json()
+
+            if(data.Message){
                 console.log(data)
             } else{
                 throw new Error("An error has occured")
