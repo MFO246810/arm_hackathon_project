@@ -7,6 +7,8 @@ import pytest
 from models import MODELS
 from llm import query_model
 
+url = "http://localhost:11434"
+
 test_case = [
     (MODELS.DEEPSEEK.value, "What is the meaning of life"),
     (MODELS.GEMMA.value, "What is the meaning of life"),
@@ -19,7 +21,7 @@ def canary_test():
     assert True
 
 @pytest.mark.parametrize("model, query", test_case)
-def test_model(model, query):
-    result = query_model(model, query)
+def test_model(model, query, url):
+    result = query_model(model, query, url)
 
     assert result != None

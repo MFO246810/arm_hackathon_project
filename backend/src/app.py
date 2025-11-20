@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173", "methods": ["GET", "POST"], "allow_headers": ["Content-Type"]}})
+url = "http://host.docker.internal:11434"
 
 @app.route("/api/call", methods=["POST"])
 def Model_Call():
@@ -12,7 +13,7 @@ def Model_Call():
         data = request.get_json()
         model = data.get('model')
         user_query = data.get('query')
-        result = query_model(model, user_query)
+        result = query_model(model, user_query, url)
 
         return jsonify({"Message": "Sucess",
                         "Response": result
