@@ -35,9 +35,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Build Backend
-        run: sudo docker compose up -d --build
 
       - name: Moving html to nginx dir
         run: |
@@ -48,6 +45,9 @@ jobs:
           ls -a
           sudo rm -rf /var/www/arm-frontend/dist
           sudo mv ./dist /var/www/arm-frontend
+
+      - name: Build Backend
+        run: sudo docker compose up -d --build
 
 
           
