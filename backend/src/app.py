@@ -16,7 +16,7 @@ def Model_Call():
         user_query = data.get('query')
         result = query_model(model, user_query, url)
 
-        return jsonify({"Message": "Sucess",
+        return jsonify({"Message": "Sucess" ,
                         "Response": result
                         }), 200
     else:
