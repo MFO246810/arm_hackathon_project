@@ -18,9 +18,10 @@ export default function Query_form({Handle_value}){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ model: model, query: query})})
-
+            
+            Handle_value(response)
             const data = await response.json()
-            Handle_value(data)
+            
             if(data.Message == "Sucess"){
                 
                 console.log(data)
