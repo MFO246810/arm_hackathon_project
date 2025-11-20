@@ -18,8 +18,13 @@ a {
   text-decoration: inherit;
 }
 
-body {
-  min-height: 100vh;
+html, body {
+  height: 100%;
+  padding-top: 80px;
+  display: flex;
+  place-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
