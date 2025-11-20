@@ -21,6 +21,7 @@ export default function Query_Page(){
             const data = await response.json()
 
             if(data.Message == "Sucess"){
+                
                 console.log(data)
             } else{
                 throw new Error("An error has occured")
