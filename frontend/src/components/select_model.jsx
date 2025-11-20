@@ -12,7 +12,7 @@
 
     const GetModels = async () => {
         try{
-            const response = await fetch("http://127.0.0.1:5000/api/list", {
+            const response = await fetch("/api/list", {
                 method: "GET",
             })
         
