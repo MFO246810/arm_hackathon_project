@@ -49,7 +49,7 @@ jobs:
       - name: Build Backend
         run:  |
           sudo docker build -t web_app_backend -f Dockerfile.backend .
-          sudo docker run --add-host host.docker.internal:host-gateway --rm -d --name web_app_backend Web_app_backend
+          sudo docker run --add-host host.docker.internal:host-gateway --rm -d --name web_app_backend web_app_backend
 
 
 
