@@ -47,7 +47,10 @@ jobs:
           sudo mv ./dist /var/www/arm-frontend
 
       - name: Build Backend
-        run: sudo docker compose up -d --build
+        run:  |
+          sudo docker build -t Web_app_backend .
+          sudo docker run -d --name Web_app_backend --add-host host.docker.internal:host-gateway -p 5000:5000 Web_app_backend
+
 
 
           
