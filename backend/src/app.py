@@ -14,7 +14,9 @@ def Model_Call():
         data = request.get_json()
         model = data.get('model')
         user_query = data.get('query')
+        print("Starting query processing .... ")
         result = query_model(model, user_query, url)
+        print("Finishing query process .... ")
 
         return jsonify({"Message": "Sucess" ,
                         "Response": result
