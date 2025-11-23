@@ -30,7 +30,7 @@ export default function Query_form({Handle_value, }){
         } catch(err){
             console.log(err)
         }
-
+        Handle_Loading(false)
     
     }
 

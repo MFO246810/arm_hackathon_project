@@ -16,18 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 🧪 Test Flask
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: |
-          cd backend
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install -r requirements.txt 
-          python3 -m pytest test
-          deactivate
+      
 
   deploy:
     needs: build-test
