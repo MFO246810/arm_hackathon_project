@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from llm import query_model
-from models import MODELS
+from src.llm import query_model
+from src.models import MODELS
 from flask_cors import CORS
 
 app = Flask(__name__)
