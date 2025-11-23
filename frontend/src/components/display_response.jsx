@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+import ReactMarkdown from "react-markdown";
 import "./display_response.css"
 
 export default function Display_response({prop}){
@@ -9,6 +10,9 @@ export default function Display_response({prop}){
                 <div class="Response_Title">
                     <h3> Response Title </h3>
                     <div class="Response_Body">
+                        <ReactMarkdown> 
+                            
+                        </ReactMarkdown>
                         <p> {prop}</p>
                     </div>
                 </div>

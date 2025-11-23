@@ -1,9 +1,26 @@
 .Query_Page {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     width: 100%;
-    min-height: 500px;      
-    margin-top: 20px;       
-    align-items: center;    
-    justify-content: flex-start; 
+    min-height: 100vh;      
+    margin-top: 80px;
+}
+
+.Response_Handler{
+    display: flex;
+    place-content: center;
+    margin-top: 50px;
+}
+
+.loader{
+    border: 6px solid #eee;
+    border-top: 6px solid #171718; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
 }

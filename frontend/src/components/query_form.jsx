@@ -3,14 +3,14 @@ import { useState } from 'preact/hooks';
 import Query_bar from "./query_bar"
 import Select_Model from "./select_model"
 
-export default function Query_form({Handle_value}){
+export default function Query_form({Handle_value, }){
     const [model, setModel] = useState("phi3:mini"); 
     const [query, setQuery] = useState("");
 
     const Handle_Submit = async(e) => {
         e.preventDefault();
         console.log("Form data:", { model, query });
-        
+        Handle_Loading(true)
         try{
             const response = await fetch("/api/call", {
                 method: "POST",
@@ -19,7 +19,6 @@ export default function Query_form({Handle_value}){
                 },
                 body: JSON.stringify({ model: model, query: query})})
             
-            console.log(response)
             const data = await response.json()
             
             if(data.Message == "Sucess"){
