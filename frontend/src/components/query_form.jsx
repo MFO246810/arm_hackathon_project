@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks';
 import Query_bar from "./query_bar"
 import Select_Model from "./select_model"
 
-export default function Query_form({Handle_value, }){
+export default function Query_form({Handle_value, Handle_Loading}){
     const [model, setModel] = useState("phi3:mini"); 
     const [query, setQuery] = useState("");
 
@@ -22,7 +22,7 @@ export default function Query_form({Handle_value, }){
             const data = await response.json()
             
             if(data.Message == "Sucess"){
-                
+                Handle_value(data)
                 console.log(data)
             } else{
                 throw new Error("An error has occured")
