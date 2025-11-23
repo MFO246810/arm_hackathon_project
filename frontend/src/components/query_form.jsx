@@ -22,7 +22,7 @@ export default function Query_form({Handle_value, Handle_Loading}){
             const data = await response.json()
             
             if(data.Message == "Sucess"){
-                Handle_value(data)
+                Handle_value(data.Response)
                 console.log(data)
             } else{
                 throw new Error("An error has occured")
