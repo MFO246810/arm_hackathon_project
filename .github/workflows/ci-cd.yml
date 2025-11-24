@@ -48,8 +48,13 @@ jobs:
 
       - name: Build Backend 
         run:  |
-          sudo docker stop web_app_backend
-          sudo docker rm -f web_app_backend
+          if [ "$(sudo docker ps -aq -f name=web_app_backend)" ]; then
+            echo "Container exists → stopping and removing..."
+            sudo docker stop web_app_backend || true
+            sudo docker rm -f web_app_backend || true
+          else
+            echo "Container does NOT exist → continuing..."
+          fi
           sudo docker builder prune -a
           sudo docker build -t web_app_backend -f Dockerfile.backend .
           sudo docker run --add-host host.docker.internal:host-gateway -p 5000:5000 -d --name web_app_backend web_app_backend
