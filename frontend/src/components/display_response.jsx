@@ -11,9 +11,8 @@ export default function Display_response({prop}){
                     <h3> Response Title </h3>
                     <div class="Response_Body">
                         <ReactMarkdown> 
-                            
+                            {prop}
                         </ReactMarkdown>
-                        <p> {prop}</p>
                     </div>
                 </div>
             </div>

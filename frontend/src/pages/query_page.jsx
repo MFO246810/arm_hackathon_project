@@ -4,7 +4,7 @@ import "./query_page.css"
 import Display_response from "../components/display_response"
 export default function Query_Page(){
 
-    const [Response, setResponse] = useState(null)
+    const [Response, setResponse] = useState("")
     const [loading, setloading] = useState(false)
 
     return (
