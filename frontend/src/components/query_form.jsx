@@ -19,14 +19,25 @@ export default function Query_form({Handle_value, Handle_Loading}){
                 },
                 body: JSON.stringify({ model: model, query: query})})
             
-            const data = await response.json()
-            
-            if(data.Message == "Sucess"){
-                Handle_value(data.Response)
-                console.log(data)
-            } else{
-                throw new Error("An error has occured")
+            if (!response.ok) {
+                console.error("Server error:", response.statusText);
+                return;
             }
+            
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+
+            let result = "";
+
+            while (true) {
+                const { value, done } = await reader.read();
+
+                if (done) break;
+                const chunk = decoder.decode(value, { stream: true });
+                result += chunk;
+                Handle_value(prev => prev + chunk);
+            }
+
         } catch(err){
             console.log(err)
         }

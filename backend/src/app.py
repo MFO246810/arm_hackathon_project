@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response, stream_with_context
 from src.llm import query_model
 from src.models import MODELS
 from flask_cors import CORS
@@ -15,12 +15,11 @@ def Model_Call():
         model = data.get('model')
         user_query = data.get('query')
         print("Starting query processing .... ")
-        result = query_model(model, user_query, url)
-        print("Finishing query process .... ")
+        def generate():
+            for token in query_model(model, user_query, url):
+                yield token
 
-        return jsonify({"Message": "Sucess" ,
-                        "Response": result
-                        }), 200
+        return Response(stream_with_context(generate()), mimetype="text/plain")
     else:
         return jsonify({"Response": "Request must be JSON", 
                         "Message": "Failure"
