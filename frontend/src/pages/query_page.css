@@ -7,8 +7,10 @@
 }
 
 .Response_Handler{
+    flex: 1;
     display: flex;
-    place-content: center;
+    justify-content: center;
+    align-items: flex-start;
     margin-top: 50px;
 }
 

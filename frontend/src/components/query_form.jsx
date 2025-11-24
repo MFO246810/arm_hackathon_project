@@ -22,7 +22,6 @@ export default function Query_form({Handle_value, Handle_Loading}){
             if (!response.ok) {
                 console.error("Server error:", response.statusText);
                 Handle_Loading(false)
-                Handle_value("An error has occured");
                 return;
             }
             
