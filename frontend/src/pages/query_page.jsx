@@ -4,7 +4,11 @@ import "./query_page.css"
 import Display_response from "../components/display_response"
 export default function Query_Page(){
 
-    const [Response, setResponse] = useState("")
+    const [Responses, setResponses] = useState([{
+        model_query: "",
+        model_used: "",
+        model_response: ""
+    }])
     const [loading, setloading] = useState(false)
 
     return (
@@ -13,9 +17,15 @@ export default function Query_Page(){
                 <div className="Response_Handler">
                     {loading ? (
                         <div className="loader"></div>
-                            ) : (<Display_response prop={Response} /> )}
+                            ) : (
+                            <>
+                                {Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}
+                            </>
+                            )}
                 </div>
-                <Query_form Handle_value={setResponse} Handle_Loading={setloading}/>
+                <div className='Query_form'>
+                    <Query_form Handle_value={setResponses} Handle_Loading={setloading}/>
+                </div>
             </div>
             
         </>

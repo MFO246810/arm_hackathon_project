@@ -24,6 +24,15 @@ export default function Query_form({Handle_value, Handle_Loading}){
                 Handle_Loading(false)
                 return;
             }
+
+            Handle_value(prev => [
+                ...prev,
+                {
+                    model_query: query,
+                    model_used: model,
+                    model_response: ""
+                }
+            ]);
             
             const reader = response.body.getReader();
             const decoder = new TextDecoder("utf-8");
@@ -36,7 +45,13 @@ export default function Query_form({Handle_value, Handle_Loading}){
                 if (done) break;
                 const chunk = decoder.decode(value, { stream: true });
                 result += chunk;
-                Handle_value(prev => prev + chunk);
+                Handle_value(prev => {
+                    const lastIndex = prev.length - 1;
+
+                    return prev.map((entry, i) =>
+                        i === lastIndex
+                            ? {...entry, model_response: entry.model_response + chunk}: entry);}
+                );
             }
 
         } catch(err){
