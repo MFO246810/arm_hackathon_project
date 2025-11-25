@@ -37,8 +37,7 @@ def Model_Call():
 
                 tracker.sample()
 
-                if ttft is None and token.strip() != "":
-                    ttft = time.perf_counter() - ttft_start
+                ttft = time.perf_counter() - ttft_start
                 
                 yield token
 

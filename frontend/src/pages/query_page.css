@@ -25,6 +25,8 @@
 }
 
 .loader{
+    display: flex;
+    justify-content: center;
     border: 6px solid #eee;
     border-top: 6px solid #171718; 
     border-radius: 50%;
