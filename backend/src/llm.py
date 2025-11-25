@@ -9,4 +9,8 @@ def query_model(Name, query, url):
 
     for chunk in stream:
         if "message" in chunk and "content" in chunk["message"]:
-            yield chunk["message"]["content"]
+            message = chunk.get("message", {})
+            text_chunk = message.get("content", "")
+
+            if text_chunk is not None:
+                yield text_chunk
