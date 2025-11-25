@@ -37,20 +37,21 @@ def Model_Call():
 
                 tracker.sample()
 
-                ttft = time.perf_counter() - ttft_start
+                if ttft is None and token.strip() != "":
+                    ttft = time.perf_counter() - ttft_start
                 
                 yield token
 
-        tracker.stop()
+            tracker.stop()
 
-        perf = tracker.summary()
-        perf["ttft"] = ttft
-        print("MODEL PERFORMANCE REPORT:")
+            perf = tracker.summary()
+            perf["ttft"] = ttft
+            print("MODEL PERFORMANCE REPORT:")
         
-        with open("Data/output.json", 'w') as json_file:
-            json.dump(perf, json_file, indent=4)
+            with open("Data/output.json", 'w') as json_file:
+                json.dump(perf, json_file, indent=4)
 
-        print("Saved to output.json")
+            print("Saved to output.json")
 
         return Response(stream_with_context(generate()), mimetype="text/plain")
     else:
