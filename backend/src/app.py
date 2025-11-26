@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, Response, stream_with_context, send_from_directory, abort
 from src.utils.InitDB import initialize_database
+from src.DBmodels.models import QueryData
 from werkzeug.utils import safe_join
 from src.llm import query_model
 from src.models import MODELS

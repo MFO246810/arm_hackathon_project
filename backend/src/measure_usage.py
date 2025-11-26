@@ -4,9 +4,10 @@ import json
 from datetime import datetime
 
 def find_ollama_process():
-    for p in psutil.process_iter(attrs=["name"]):
-        if "ollama" in p.info["name"].lower():
-            return psutil.Process(p.pid)
+    for p in psutil.process_iter(['name', 'cmdline']):
+        cmd = " ".join(p.info.get("cmdline", []))
+        if "ollama serve" in cmd:
+            return p
     raise RuntimeError("Ollama process not found")
 
 class ModelPerformanceTracker:
@@ -43,6 +44,9 @@ class ModelPerformanceTracker:
     def summary(self):
         if not self.samples:
             return {}
+
+        print(self.ollama.name())
+        print(self.ollama.pid)
 
         return {
             "cpu_avg": sum(s["cpu_percent"] for s in self.samples) / len(self.samples),
