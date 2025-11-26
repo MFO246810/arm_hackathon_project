@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, Response, stream_with_context, send_from_directory, abort
+from src.utils.InitDB import initialize_database
 from werkzeug.utils import safe_join
 from src.llm import query_model
 from src.models import MODELS
@@ -8,8 +9,10 @@ import time
 import json
 import os
 
+
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173", "methods": ["GET", "POST"], "allow_headers": ["Content-Type"]}})
+initialize_database()
 Data_Dir = os.path.abspath("Data")
 os.makedirs(Data_Dir, exist_ok=True)
 
