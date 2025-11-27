@@ -4,7 +4,7 @@ from sqlalchemy import String, Float, Integer, DateTime, Boolean, BigInteger, Te
 class Base(DeclarativeBase):
     pass
 
-class QueryData(Base):
+class Query_Data(Base):
     __tablename__ = "Query_Data"
 
     ID: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

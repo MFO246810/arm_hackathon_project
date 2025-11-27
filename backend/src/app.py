@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, Response, stream_with_context, send_from_directory, abort
 from src.utils.InitDB import initialize_database
 from src.utils.database import SessionLocal
-from src.DBmodels.models import QueryData
+from src.DBmodels.models import Query_Data
 from werkzeug.utils import safe_join
 from src.llm import query_model
 from src.models import MODELS
@@ -61,7 +61,7 @@ def Model_Call():
 
             print("Saved to output.json")
 
-            Query_Data  = QueryData(
+            QueryData  = Query_Data(
                 Model_Name = model,
                 User_Query = user_query,
                 Query_Time = Start_time,
@@ -77,7 +77,7 @@ def Model_Call():
                 Error_Message = None,
             )
 
-            db.add(Query_Data)
+            db.add(QueryData)
             db.commit()
             db.close()
 
