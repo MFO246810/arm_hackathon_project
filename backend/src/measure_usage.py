@@ -44,16 +44,36 @@ class ModelPerformanceTracker:
         if not self.running:
             return
         
+        now = time.perf_counter()
+
+        if now - self.last_sample_time < self.sample_interval:
+            return
+        self.last_sample_time = now
+
+        _, self.ollama_runners = find_ollama_process()
+
         cpu = self.ollama_serve.cpu_percent(interval=0.0)
         mem = self.ollama_serve.memory_info().rss
-        io = self.ollama_serve.io_counters()
+        io_read = self.ollama_serve.io_counters().read_bytes
+        io_write = self.ollama_serve.io_counters().write_bytes
+
+        runner_cpu = 0
+        runner_mem = 0
+        runner_io_write = 0
+        runner_io_read = 0
+
+        for process in self.ollama_runners:
+            runner_cpu = runner_cpu + process.cpu_percent(interval=0.0)
+            runner_mem = runner_mem + process.memory_info().rss
+            runner_io_write = runner_io_write + process.io_counters().write_bytes
+            runner_io_read = runner_io_read + process.io_counters().read_bytes
 
         self.samples.append({
             "timestamp": time.perf_counter(),
-            "cpu_percent": cpu,
-            "memory_bytes": mem,
-            "read_bytes": io.read_bytes,
-            "write_bytes": io.write_bytes
+            "cpu_percent": cpu + runner_cpu,
+            "memory_bytes": mem + runner_mem,
+            "read_bytes": io_read,
+            "write_bytes": io_write
         })
 
     def summary(self):
