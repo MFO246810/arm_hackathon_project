@@ -118,7 +118,7 @@ def get_DB_data():
     
     db = SessionLocal()
 
-    results = db.execute(select(QueryData)).scalars().all()
+    results = db.execute(select(Query_Data)).scalars().all()
 
     db.close()
 
