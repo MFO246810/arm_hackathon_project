@@ -10,7 +10,7 @@ from src.measure_usage import ModelPerformanceTracker
 import time
 import json
 import os
-import datetime
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def Model_Call():
         print("Starting query processing .... ")
 
         db = SessionLocal()
-        Start_time = datetime.utcnow()
+        Start_time = datetime.now()
         tracker = ModelPerformanceTracker()
         tracker.start()
 
@@ -65,7 +65,7 @@ def Model_Call():
                 Model_Name = model,
                 User_Query = user_query,
                 Query_Time = Start_time,
-                Response_Time = datetime.utcnow(),
+                Response_Time = datetime.now(),
                 TTFT = ttft,
                 Total_Time = perf["total_inference_time"],
                 CPU_Usage = perf["cpu_avg"],
