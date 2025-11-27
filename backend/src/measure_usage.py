@@ -4,15 +4,31 @@ import json
 from datetime import datetime
 
 def find_ollama_process():
-    for p in psutil.process_iter(['name', 'cmdline']):
-        cmd = " ".join(p.info.get("cmdline", []))
-        if "ollama serve" in cmd:
-            return p
-    raise RuntimeError("Ollama process not found")
+    ollama_serve = None
+    Runner_Processes = []
+    for process in psutil.process_iter(["pid", "name", "cmdline"]):
+        try:
+            name = (process.info.get("name") or "").lower()
+            cmd = " ".join(process.info.get("cmdline") or []).lower()
+
+            if "ollama" in name and "serve" in cmd:
+                ollama_serve = process
+
+            if (
+                "ollama" in name and
+                "runner" in cmd and
+                "--model" in cmd
+            ):
+                Runner_Processes.append(process)
+
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+
+    return ollama_serve, Runner_Processes
 
 class ModelPerformanceTracker:
     def __init__(self):
-        self.ollama = find_ollama_process()
+        self.ollama_serve, self.ollama_runners = find_ollama_process()
         self.samples = []
         self.running = False
 
@@ -29,9 +45,9 @@ class ModelPerformanceTracker:
         if not self.running:
             return
         
-        cpu = self.ollama.cpu_percent(interval=0.0)
-        mem = self.ollama.memory_info().rss
-        io = self.ollama.io_counters()
+        cpu = self.ollama_serve.cpu_percent(interval=0.0)
+        mem = self.ollama_serve.memory_info().rss
+        io = self.ollama_serve.io_counters()
 
         self.samples.append({
             "timestamp": time.perf_counter(),
@@ -45,6 +61,9 @@ class ModelPerformanceTracker:
         if not self.samples:
             return {}
         
+        print("Serve PID:", self.ollama_serve.pid if self.ollama_serve else None)
+        print("Runner PIDs:", [r.pid for r in self.ollama_runners])
+
         return {
             "cpu_avg": sum(s["cpu_percent"] for s in self.samples) / len(self.samples),
             "cpu_peak": max(s["cpu_percent"] for s in self.samples),
