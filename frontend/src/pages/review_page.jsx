@@ -42,39 +42,46 @@ export default function Review_Page(){
                         </div>
                     </>
                 ):(
-                    <table>
-                        <tr>
-                            <th>Model Name</th>
-                            <th>Original Query</th>
-                            <th>Query Time</th>
-                            <th> Response Time </th>
-                            <th> Time Till First Token</th>
-                            <th> Total Time Spent processing</th>
-                            <th> CPU Usage</th>
-                            <th> CPU Peak</th>
-                            <th> RAM Usage</th>
-                            <th> Disk Read</th>
-                            <th> Disk Write </th>
-                        </tr>
-
-                        {
-                            DB_Data.map((Data, idx) => (
-                                <tr>
-                                    <td> {Data.Model_Name} </td>
-                                    <td> {Data.User_Query} </td>
-                                    <td> {Data.Query_Time} </td>
-                                    <td> {Data.Response_Time} </td>
-                                    <td> {Data.TTFT} </td>
-                                    <td> {Data.Total_Time} </td>
-                                    <td> {Data.CPU_Usage} </td>
-                                    <td> {Data.CPU_Peak} </td>
-                                    <td> {Data.RAM_Usage} </td>
-                                    <td> {Data.Disk_Read} </td>
-                                    <td> {Data.Disk_Write} </td>
-                                </tr>
-                            ))
-                        }
-                    </table>
+                    <>
+                        <div className="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Model Name</th>
+                                        <th>Original Query</th>
+                                        <th>Query Time</th>
+                                        <th> Response Time </th>
+                                        <th> Time Till First Token</th>
+                                        <th> Total Time Spent processing</th>
+                                        <th> CPU Usage</th>
+                                        <th> CPU Peak</th>
+                                        <th> RAM Usage</th>
+                                        <th> Disk Read</th>
+                                        <th> Disk Write </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        DB_Data.map((Data, idx) => (
+                                            <tr>
+                                                <td> {Data.Model_Name} </td>
+                                                <td> {Data.User_Query} </td>
+                                                <td> {Data.Query_Time} </td>
+                                                <td> {Data.Response_Time} </td>
+                                                <td> {Data.TTFT} </td>
+                                                <td> {Data.Total_Time} </td>
+                                                <td> {Data.CPU_Usage} </td>
+                                                <td> {Data.CPU_Peak} </td>
+                                                <td> {Data.RAM_Usage} </td>
+                                                <td> {Data.Disk_Read} </td>
+                                                <td> {Data.Disk_Write} </td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
                 )}
             </div>
         </>
