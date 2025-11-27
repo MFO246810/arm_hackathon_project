@@ -23,7 +23,6 @@ class QueryData(Base):
     CPU_Usage: Mapped[float] = mapped_column(Float, nullable=False)
     CPU_Peak: Mapped[float] = mapped_column(Float, nullable=False)
 
-    RAM_Usage: Mapped[float] = mapped_column(Float, nullable=False)
     RAM_Peak: Mapped[float] = mapped_column(Float, nullable=False)
 
     Disk_Read: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
