@@ -62,7 +62,7 @@ def Model_Call():
         return jsonify({"Response": "Request must be JSON", 
                         "Message": "Failure"
                         }), 400
-    
+     
 @app.route("/api/list", methods=["GET"])
 def Model_List():
 
