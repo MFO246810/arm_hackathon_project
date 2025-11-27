@@ -45,7 +45,7 @@ class ModelPerformanceTracker:
         """Collect CPU, RAM, and I/O stats without blocking anything."""
         if not self.running:
             return
-        
+         
         now = time.perf_counter()
 
         if now - self.last_sample_time < self.sample_interval:
