@@ -26,6 +26,9 @@ class QueryData(Base):
     RAM_Usage: Mapped[float] = mapped_column(Float, nullable=False)
     RAM_Peak: Mapped[float] = mapped_column(Float, nullable=False)
 
+    Disk_Read: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
+    Disk_Write: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
+
     Success: Mapped[bool] = mapped_column(Boolean, default=True)
     Error_Message: Mapped[str | None] = mapped_column(Text, nullable=True)
 
