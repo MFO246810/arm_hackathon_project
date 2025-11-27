@@ -31,7 +31,7 @@ export default function Review_Page(){
     useEffect(() => {
         fetch_DB_Data()
     }, [])
-
+ 
     return(
         <>
             <div class="Review_page">
