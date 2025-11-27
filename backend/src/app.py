@@ -120,9 +120,21 @@ def get_DB_data():
 
     results = db.execute(select(Query_Data)).scalars().all()
 
+    serialized = [{
+        "ID": r.ID,
+        "Model_Name": r.Model_Name,
+        "User_Query": r.User_Query,
+        "Query_time": r.Query_time.isoformat(),
+        "Response_time": r.Response_time.isoformat(),
+        "CPU_Usage": r.CPU_Usage,
+        "RAM_Usage": r.RAM_Usage,
+        "CPU_Peak": r.CPU_Peak,
+    }
+    for r in results]
+
     db.close()
 
-    return jsonify({"Response": results, "Message": "Sucess"}), 200
+    return jsonify({"Response": serialized, "Message": "Sucess"}), 200
 
 if __name__ == '__main__':  
    app.run(host="0.0.0.0", port=5000)

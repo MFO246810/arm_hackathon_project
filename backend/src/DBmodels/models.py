@@ -33,3 +33,4 @@ class Query_Data(Base):
 
     def __repr__(self) -> str:
         return f"<ModelData ID={self.ID} Model={self.Model_Name} Total={self.Total_Time}s>"
+    
