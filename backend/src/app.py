@@ -29,7 +29,7 @@ def Model_Call():
         user_query = data.get('query')
         print("Starting query processing .... ")
 
-        tracker = ModelPerformanceTracker(sample_interval=0.1)
+        tracker = ModelPerformanceTracker()
         tracker.start()
 
         ttft_start = time.perf_counter()
