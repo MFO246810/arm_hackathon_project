@@ -60,7 +60,7 @@ export default function Review_Page(){
                         {
                             DB_Data.map((Data, idx) => (
                                 <tr>
-                                    <td> {Data.DB_Data} </td>
+                                    <td> {Data.Model_Name} </td>
                                     <td> {Data.User_Query} </td>
                                     <td> {Data.Query_Time} </td>
                                     <td> {Data.Response_Time} </td>
