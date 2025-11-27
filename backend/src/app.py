@@ -7,6 +7,7 @@ from src.llm import query_model
 from src.models import MODELS
 from flask_cors import CORS
 from src.measure_usage import ModelPerformanceTracker
+from sqlalchemy import create_engine, select, func
 import time
 import json
 import os
