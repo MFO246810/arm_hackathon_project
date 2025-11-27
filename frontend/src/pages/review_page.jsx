@@ -8,7 +8,7 @@ export default function Review_Page(){
 
     const fetch_DB_Data = async() => {
         try{
-            const response = fetch("/api/model_data", {
+            const response = await fetch("/api/model_data", {
                 method: "GET",
             })
 
