@@ -28,6 +28,8 @@ def find_ollama_process():
 class ModelPerformanceTracker:
     def __init__(self):
         self.ollama_serve, self.ollama_runners = find_ollama_process()
+        self.sample_interval = 0.2
+        self.last_sample_time = 0
         self.samples = []
         self.running = False
 
