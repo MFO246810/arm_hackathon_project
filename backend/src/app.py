@@ -29,7 +29,7 @@ def Model_Call():
         user_query = data.get('query')
         print("Starting query processing .... ")
 
-        tracker = ModelPerformanceTracker()
+        tracker = ModelPerformanceTracker(sample_interval=0.1)
         tracker.start()
 
         ttft_start = time.perf_counter()
@@ -41,7 +41,7 @@ def Model_Call():
 
                 tracker.sample()
 
-                if ttft is None and token.strip() != "":
+                if ttft is None and token and token.strip() != "":
                     ttft = time.perf_counter() - ttft_start
                 
                 yield token
@@ -71,7 +71,8 @@ def Model_List():
         MODELS.GEMMA.value,
         MODELS.GRANITE.value,
         MODELS.LLAMA.value,
-        MODELS.PHI.value
+        MODELS.PHI.value,
+        MODELS.MISTRAL.value
     ]
 
     return jsonify({"Response": Models_List, "Message": "Sucess"}), 200
