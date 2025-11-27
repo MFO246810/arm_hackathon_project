@@ -6,6 +6,54 @@
     margin-top: 80px;
 }
 
+.table-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: white;
+}
+
+/* Clean modern table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+/* Header */
+table thead {
+    position: sticky;
+    top: 0;
+    background: #171718;      /* Dark header */
+    color: #fff;
+    z-index: 5;
+}
+
+th {
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Rows */
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* Hover row */
+tr:hover td {
+    background: #efefef;
+}
+
 .loader{
     display: flex;
     justify-content: center;

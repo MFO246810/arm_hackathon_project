@@ -68,7 +68,7 @@ export default function Review_Page(){
                                     <td> {Data.Total_Time} </td>
                                     <td> {Data.CPU_Usage} </td>
                                     <td> {Data.CPU_Peak} </td>
-                                    <td> {Data.RAM_Peak} </td>
+                                    <td> {Data.RAM_Usage} </td>
                                     <td> {Data.Disk_Read} </td>
                                     <td> {Data.Disk_Write} </td>
                                 </tr>
