@@ -16,8 +16,7 @@ def find_ollama_process():
 
             if (
                 "ollama" in name and
-                "runner" in cmd and
-                "--model" in cmd
+                "runner" in cmd
             ):
                 Runner_Processes.append(process)
 
