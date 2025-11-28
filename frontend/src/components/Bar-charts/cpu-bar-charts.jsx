@@ -42,7 +42,7 @@ export default function CPUBarChart({ data }) {
           />
 
           <YAxis
-            domain={[0, 100]}
+            domain={[200, 400]}
             label={{
               value: "CPU Usage (%)",
               angle: -90,

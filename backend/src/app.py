@@ -130,9 +130,9 @@ def get_DB_data():
         "Total_Time": r.Total_Time,
         "Disk_Read": r.Disk_Read,
         "Disk_Write": r.Disk_Write,
-        "CPU_Usage": r.CPU_Usage,
-        "RAM_Usage": r.RAM_Peak,
-        "CPU_Peak": r.CPU_Peak,
+        "CPU_Usage": int(r.CPU_Usage),
+        "RAM_Usage": int(r.RAM_Peak/1000000000),
+        "CPU_Peak": int(r.CPU_Peak),
     }
     for r in results]
 
