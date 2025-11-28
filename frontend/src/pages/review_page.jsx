@@ -52,17 +52,6 @@ export default function Review_Page(){
 
         const models = groupBy(DB_Data, "Model_Name")
 
-        const label = Object.keys(models);
-        //setlabels(Object.keys(models));
-
-        const value = label.map(model => {
-            const items = models[model];
-            const avg = items.reduce((sum, record) => sum + record.CPU_Usage, 0) / items.length;
-            return avg;
-        });
-
-        //setvalues(value)
-
         setLoading(false);
         console.log("Chart Data:", DB_Data);
     }, [DB_Data])
