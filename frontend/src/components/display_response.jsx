@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 import ReactMarkdown from "react-markdown";
 import "./display_response.css"
 

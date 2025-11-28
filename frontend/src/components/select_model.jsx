@@ -1,6 +1,5 @@
  import "./select_model.css"
- import { h } from 'preact';
- import { useState, useEffect } from 'preact/hooks';
+ import { useState, useEffect } from 'react';
  
  export default function Select_Model({ value, onChange }){
     const [models, setmodels] = useState([]);

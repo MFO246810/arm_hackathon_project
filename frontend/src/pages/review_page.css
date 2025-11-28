@@ -1,62 +1,77 @@
-.Review_page{
+.Review_page {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh;      
+    min-height: 100vh;
     margin-top: 80px;
+}
+
+/* FIX: Chart container MUST have height on first render */
+.graph-container {
+    width: 100%;
+    min-height: 420px;       /* ✔️ Required for Recharts */
+    padding: 10px;
+}
+
+/* Wrapper that allows ResponsiveContainer to expand */
+.chart-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
 }
 
 .table-wrapper {
     width: 100%;
     max-width: 1400px;
-    max-height: 70vh;
     overflow-y: auto;
+    background: white;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    background: white;
 }
 
-/* Clean modern table */
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 15px;
 }
 
-/* Header */
-table thead {
+thead {
     position: sticky;
     top: 0;
-    background: #171718;      /* Dark header */
+    background: #020249;
     color: #fff;
     z-index: 5;
 }
 
-th {
-    padding: 12px 14px;
-    text-align: left;
-    font-weight: 600;
-}
-
-/* Rows */
-td {
+th, td {
     padding: 12px 14px;
     border-bottom: 1px solid #eee;
-    color: #333;
 }
 
 tr:nth-child(even) td {
-    background-color: #f9f9f9;
+    background: #f9f9f9;
 }
 
-/* Hover row */
 tr:hover td {
     background: #efefef;
 }
 
-.loader{
+.loader_container {
+    margin-top: 40px;
+    width: 100%;
+    min-height: 10vh;
     display: flex;
     justify-content: center;
+}
+
+.loader {
     border: 6px solid #eee;
     border-top: 6px solid #171718; 
     border-radius: 50%;
@@ -67,12 +82,4 @@ tr:hover td {
 
 @keyframes spin {
     100% { transform: rotate(360deg); }
-}
-
-.loader_container{
-    margin-top: 40px;
-    width: 100%;
-    min-height: 10vh;
-    display: flex;
-    justify-content: center;
 }

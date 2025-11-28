@@ -1,24 +1,21 @@
 import './app.css'
-import { render } from 'preact';
-import Router from 'preact-router';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from './components/navbar'
 import Query_Page from './pages/query_page';
 import Review_Page from './pages/review_page';
+import Chart_View from './pages/charts';
 export function App() {
 
   return (
     <>
         <Navbar />
-
-        <Router>
-          <Query_Page path="/" />
-          <Review_Page path="/review" />
-        </Router>
-
-      
-
+        
+          <Routes>
+            <Route path="/" element={<Query_Page/>}/>
+            <Route path="/review" element={<Review_Page/>} />
+          </Routes>
     </>
   )
 }
 
-render(<App />, document.getElementById('app'));
+export default App

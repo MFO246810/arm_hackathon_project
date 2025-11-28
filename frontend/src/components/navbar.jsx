@@ -1,24 +1,23 @@
 import "./navbar.css"
-import { h } from 'preact';
-import { Link } from 'preact-router/match';
+import { Link } from "react-router-dom";
 
 export default function Navbar(){
     return(
         <>
-            <nav class="navbar">
-                <div class="navbar-container">
-                    <div class="navbar-item">
+            <nav className="navbar">
+                <div className="navbar-container">
+                    <div className="navbar-item">
                     </div>
-                    <div class="navbar-item">
-                        <div class="navbar-item-center">
-                            <h2 class="navbar-item-center-title"> LLM Tester</h2>
+                    <div className="navbar-item">
+                        <div className="navbar-item-center">
+                            <h2 className="navbar-item-center-title"> LLM Tester</h2>
                         </div>
                     </div>
-                    <div class="navbar-item">
-                        <div class="navbar-item-right">
-                            <div class="navbar-item-right-link-container">
-                                <Link activeClassName="active" href="/" class="navbar-item-right-link">Query</Link>
-                                <Link activeClassName="active" href="/review" class="navbar-item-right-link">Review</Link>
+                    <div className="navbar-item">
+                        <div className="navbar-item-right">
+                            <div className="navbar-item-right-link-container">
+                                <Link to="/" className="navbar-item-right-link">Query</Link>
+                                <Link to="/review" className="navbar-item-right-link">Review</Link>
                             </div>
                         </div>
                     </div>

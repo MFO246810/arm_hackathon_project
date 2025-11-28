@@ -1,7 +1,8 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 import Query_form from "../components/query_form"
 import "./query_page.css"
 import Display_response from "../components/display_response"
+
 export default function Query_Page(){
 
     const [Responses, setResponses] = useState([{

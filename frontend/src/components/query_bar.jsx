@@ -1,5 +1,4 @@
 import "./query_bar.css"
-import { h } from 'preact';
 
 export default function Query_bar({ value, onChange }){
 
