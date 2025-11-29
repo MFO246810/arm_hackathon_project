@@ -42,7 +42,7 @@ export default function Time_Processing_Chart({ data }) {
           />
 
           <YAxis
-            domain={[(dataMin) => dataMin - 30, (dataMax) => dataMax + 30]}
+            domain={[0, (dataMax) => dataMax + 30]}
             label={{
               value: "Time Spent Processing (ms)",
               angle: -90,
@@ -53,7 +53,7 @@ export default function Time_Processing_Chart({ data }) {
           />
  
           <Tooltip
-            formatter={(value) => `${value}%`}
+            formatter={(value) => `${value}ms`}
             labelStyle={{ fontWeight: "bold" }}
           />
 
