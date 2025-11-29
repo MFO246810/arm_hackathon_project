@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import CPUBarChart from '../components/Bar-charts/cpu-usage-charts';
 import RAMBarChart from '../components/Bar-charts/ram-bar-chart';
 import CPU_Peak_Bar_Chart from '../components/Bar-charts/cpu-peak-chart';
+import Time_Processing_Chart from '../components/Bar-charts/Time_processing-chart';
 import "./review_page.css"
+import { fakeData } from '../Data/fakedata';
 
 export default function Review_Page(){
 
@@ -35,8 +37,10 @@ export default function Review_Page(){
     }
 
     useEffect(() => {
-        fetch_DB_Data()
-        //setDB_Data(fakeData);
+        //fetch_DB_Data()
+        setDB_Data(fakeData);
+        set_Graph_Data(fakeData)
+        setLoading(false)
     }, []);
  
     return(
@@ -51,9 +55,12 @@ export default function Review_Page(){
                 ):(
                     <>
                         <div className="graph-container">
-                            <CPUBarChart data={Graph_Data}/>
-                            <RAMBarChart data={Graph_Data}/>
-                            <CPU_Peak_Bar_Chart data={Graph_Data}/>
+                            <div className="graph-grid">
+                                <CPUBarChart data={Graph_Data}/>
+                                <CPU_Peak_Bar_Chart data={Graph_Data}/>
+                                <RAMBarChart data={Graph_Data}/>
+                                <Time_Processing_Chart data={Graph_Data}/>
+                            </div>
                         </div>
                         <div className="table-container">
                             <div className="table-wrapper">
