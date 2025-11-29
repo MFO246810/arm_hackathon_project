@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import CPUBarChart from '../components/Bar-charts/cpu-bar-charts';
+import CPUBarChart from '../components/Bar-charts/cpu-usage-charts';
 import RAMBarChart from '../components/Bar-charts/ram-bar-chart';
-import { fakeData } from '../Data/fakedata';
+import CPU_Peak_Bar_Chart from '../components/Bar-charts/cpu-peak-chart';
 import "./review_page.css"
 
 export default function Review_Page(){
 
     const [DB_Data, setDB_Data] = useState([]);
     const [loading, setLoading] = useState(true)
-    const [labels, setlabels] = useState([])
-    const [values, setvalues] =  useState([])
+    const [Graph_Data, set_Graph_Data] = useState([])
+
     const fetch_DB_Data = async() => {
         try{
             const response = await fetch("/api/model_data", {
@@ -22,39 +22,22 @@ export default function Review_Page(){
             }
 
             const data = await response.json()
-            setDB_Data(data.Response)
+            setDB_Data(data.DB_Data)
+            set_Graph_Data(data.Average_Data)
 
         } catch(e){
             console.log("Error", e)
             setDB_Data(null)
+            set_Graph_Data(null)
         } finally{
             setLoading(false)
         }
     }
 
-    const groupBy = (arr, key) => {
-        return arr.reduce((acc, item) => {
-            const groupKey = item[key];
-            if (!acc[groupKey]) acc[groupKey] = [];
-            acc[groupKey].push(item);
-            return acc;
-        }, {});
-    };
-
     useEffect(() => {
         fetch_DB_Data()
         //setDB_Data(fakeData);
     }, []);
-
-    useEffect(() => {
-        
-        if (DB_Data.length === 0) return;
-
-        const models = groupBy(DB_Data, "Model_Name")
-
-        setLoading(false);
-        console.log("Chart Data:", DB_Data);
-    }, [DB_Data])
  
     return(
         <>
@@ -68,13 +51,9 @@ export default function Review_Page(){
                 ):(
                     <>
                         <div className="graph-container">
-                            <CPUBarChart
-                                data={DB_Data}
-                            />
-                            <RAMBarChart 
-                                data={DB_Data}
-                            />
-
+                            <CPUBarChart data={Graph_Data}/>
+                            <RAMBarChart data={Graph_Data}/>
+                            <CPU_Peak_Bar_Chart data={Graph_Data}/>
                         </div>
                         <div className="table-container">
                             <div className="table-wrapper">

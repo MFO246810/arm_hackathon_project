@@ -120,6 +120,35 @@ def get_DB_data():
 
     results = db.execute(select(Query_Data)).scalars().all()
 
+    stmt = (
+        select(
+            Query_Data.Model_Name,
+            func.avg(Query_Data.CPU_Usage).label("avg_cpu_usage"),
+            func.avg(Query_Data.CPU_Peak).label("avg_cpu_peak"),
+            func.avg(Query_Data.RAM_Usage).label("avg_ram_usage"),
+            func.avg(Query_Data.Disk_Read).label("avg_disk_read"),
+            func.avg(Query_Data.Disk_Write).label("avg_disk_write"),
+            func.avg(Query_Data.TTFT).label("avg_ttft"),
+            func.avg(Query_Data.Total_Time).label("avg_total_time"),
+        ) .group_by(Query_Data.Model_Name)
+    )
+
+    rows = db.execute(stmt).all() 
+
+    Avg_Data = [
+        {
+            "Model_Name": row[0],
+            "Avg_CPU_Usage": int(row[1]),
+            "Avg_CPU_Peak": int(row[2]),
+            "Avg_RAM_Usage": int(row[3])/1000000000,
+            "Avg_Disk_Read": int(row[4]),
+            "Avg_Disk_Write": int(row[5]),
+            "Avg_TTFT": int(row[6]),
+            "Avg_Total_Time": int(row[7]),
+        }
+        for row in rows
+    ]    
+
     serialized = [{
         "ID": r.ID,
         "Model_Name": r.Model_Name,
@@ -138,7 +167,7 @@ def get_DB_data():
 
     db.close()
 
-    return jsonify({"Response": serialized, "Message": "Sucess"}), 200
+    return jsonify({"DB_Data": serialized, "Average_Data": Avg_Data, "Message": "Sucess"}), 200
 
 if __name__ == '__main__':  
    app.run(host="0.0.0.0", port=5000)

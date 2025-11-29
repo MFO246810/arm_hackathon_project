@@ -8,8 +8,8 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-
-export default function CPUBarChart({ data }) {
+0
+export default function CPU_Peak_Bar_Chart({ data }) {
   return (
     <div
       style={{
@@ -22,7 +22,7 @@ export default function CPUBarChart({ data }) {
       }}
     >
       <h2 style={{ textAlign: "center", marginBottom: "10px", fontSize: "20px" }}>
-        CPU Usage by Model
+        CPU Peak by Model
       </h2>
 
       <ResponsiveContainer width="100%" height="100%">
@@ -42,9 +42,9 @@ export default function CPUBarChart({ data }) {
           />
 
           <YAxis
-            domain={[200, 400]}
+            domain={[0, 8]}
             label={{
-              value: "CPU Usage (%)",
+              value: "CPU PEAK (%)",
               angle: -90,
               position: "insideLeft",
               dx: -5,
@@ -60,8 +60,8 @@ export default function CPUBarChart({ data }) {
           <Legend />
 
           <Bar
-            dataKey="CPU_Usage"
-            name="CPU Usage (%)"
+            dataKey="Avg_CPU_Peak"
+            name="CPU PEAK (%)"
             fill="#6366f1"
             radius={[8, 8, 0, 0]}
             barSize={40}

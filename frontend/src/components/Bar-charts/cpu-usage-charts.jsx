@@ -8,8 +8,8 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-0
-export default function RAMBarChart({ data }) {
+
+export default function CPUBarChart({ data }) {
   return (
     <div
       style={{
@@ -22,7 +22,7 @@ export default function RAMBarChart({ data }) {
       }}
     >
       <h2 style={{ textAlign: "center", marginBottom: "10px", fontSize: "20px" }}>
-        RAM Usage by Model
+        CPU Usage by Model
       </h2>
 
       <ResponsiveContainer width="100%" height="100%">
@@ -42,9 +42,9 @@ export default function RAMBarChart({ data }) {
           />
 
           <YAxis
-            domain={[0, 8]}
+            domain={[200, 400]}
             label={{
-              value: "RAM Usage (GB)",
+              value: "CPU Usage (%)",
               angle: -90,
               position: "insideLeft",
               dx: -5,
@@ -53,15 +53,15 @@ export default function RAMBarChart({ data }) {
           />
 
           <Tooltip
-            formatter={(value) => `${value}GB`}
+            formatter={(value) => `${value}%`}
             labelStyle={{ fontWeight: "bold" }}
           />
 
           <Legend />
 
           <Bar
-            dataKey="Avg_RAM_Usage"
-            name="RAM Usage (GB)"
+            dataKey="Avg_CPU_Usage"
+            name="CPU Usage (%)"
             fill="#6366f1"
             radius={[8, 8, 0, 0]}
             barSize={40}

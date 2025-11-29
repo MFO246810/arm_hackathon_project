@@ -1,4 +1,4 @@
-import CustomizeLabels from "../components/Bar-charts/cpu-bar-charts";
+import CustomizeLabels from "../components/Bar-charts/cpu-usage-charts";
 
 export default function Chart_View(){
     return(
