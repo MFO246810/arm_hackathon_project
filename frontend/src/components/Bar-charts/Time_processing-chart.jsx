@@ -51,7 +51,7 @@ export default function Time_Processing_Chart({ data }) {
               style: { fontSize: 12 },
             }}
           />
-
+ 
           <Tooltip
             formatter={(value) => `${value}%`}
             labelStyle={{ fontWeight: "bold" }}
