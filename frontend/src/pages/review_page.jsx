@@ -37,10 +37,10 @@ export default function Review_Page(){
     }
 
     useEffect(() => {
-        //fetch_DB_Data()
-        setDB_Data(fakeData);
-        set_Graph_Data(fakeData)
-        setLoading(false)
+        fetch_DB_Data()
+        //setDB_Data(fakeData);
+        //set_Graph_Data(fakeData)
+        //setLoading(false)
     }, []);
  
     return(
