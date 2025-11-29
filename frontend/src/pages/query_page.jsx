@@ -16,13 +16,16 @@ export default function Query_Page(){
         <>
             <div class="Query_Page">
                 <div className="Response_Handler">
-                    {loading ? (
-                        <div className="loader"></div>
-                            ) : (
-                            <>
-                                {Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}
-                            </>
-                            )}
+                    <div className="_Container">
+                        {loading ? (
+                            <div className="loader"></div>
+                                ) : (
+                                    <>
+                                        {Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}
+                                    </>
+                                )
+                        }
+                    </div>
                 </div>
                 <div className='Query_form'>
                     <Query_form Handle_value={setResponses} Handle_Loading={setloading}/>

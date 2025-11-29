@@ -42,7 +42,7 @@ export default function CPU_Peak_Bar_Chart({ data }) {
           />
 
           <YAxis
-            domain={[0, 8]}
+            domain={[350, 400]}
             label={{
               value: "CPU PEAK (%)",
               angle: -90,

@@ -15,6 +15,11 @@
     padding-bottom: 110px;
 }
 
+._Container{
+    display: flex;
+    justify-content: center;
+}
+
 .Query_form{
     height: 110px;
     border-top: 1px solid #ddd;
