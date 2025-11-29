@@ -125,7 +125,7 @@ def get_DB_data():
             Query_Data.Model_Name,
             func.avg(Query_Data.CPU_Usage).label("avg_cpu_usage"),
             func.avg(Query_Data.CPU_Peak).label("avg_cpu_peak"),
-            func.avg(Query_Data.RAM_Usage).label("avg_ram_usage"),
+            func.avg(Query_Data.RAM_Peak).label("avg_ram_usage"),
             func.avg(Query_Data.Disk_Read).label("avg_disk_read"),
             func.avg(Query_Data.Disk_Write).label("avg_disk_write"),
             func.avg(Query_Data.TTFT).label("avg_ttft"),
