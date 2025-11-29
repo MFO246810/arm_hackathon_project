@@ -42,7 +42,7 @@ export default function Time_Processing_Chart({ data }) {
           />
 
           <YAxis
-            domain={[200, 400]}
+            domain={[(dataMin) => dataMin - 30, (dataMax) => dataMax + 30]}
             label={{
               value: "Time Spent Processing (ms)",
               angle: -90,

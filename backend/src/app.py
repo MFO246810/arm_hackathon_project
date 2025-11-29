@@ -140,7 +140,7 @@ def get_DB_data():
             "Model_Name": row[0],
             "Avg_CPU_Usage": int(row[1]),
             "Avg_CPU_Peak": int(row[2]),
-            "Avg_RAM_Usage": int(row[3])/1000000000,
+            "Avg_RAM_Usage": int(row[3]/1000000000),
             "Avg_Disk_Read": int(row[4]),
             "Avg_Disk_Write": int(row[5]),
             "Avg_TTFT": int(row[6]),
