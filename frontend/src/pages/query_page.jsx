@@ -17,6 +17,7 @@ export default function Query_Page(){
     useEffect(() => {
         let existing_responses = Load_With_Expiry("Model_Responses") || [];
         setResponses(existing_responses)
+        window.location.reload();
     }, [])
 
     return (

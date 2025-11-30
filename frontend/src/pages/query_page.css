@@ -4,29 +4,26 @@
     width: 100%;
     height: 90vh;     
     margin-top: 80px;
-    overflow: hidden; /* prevents page scroll */
+    overflow: hidden; 
 }
 
-/* Middle scrollable area */
 .Response_Handler{
     flex: 1;
     overflow-y: auto;
     display: flex;
-    justify-content: flex-start; /* responses stack from the top */
-    padding: 20px 0 120px 0; /* space for bottom form */
+    justify-content: flex-start; 
+    padding: 20px 0 120px 0; 
 }
 
-/* Container that holds all responses */
 ._Container{
     display: flex;
     flex-direction: column;
-    align-items: center; /* centers horizontally */
+    align-items: center; 
     width: 100%;
     height: auto; 
-    gap: 20px; /* space between responses */
+    gap: 20px; 
 }
 
-/* Bottom form */
 .Query_form{
     height: 110px;
     border-top: 1px solid #ddd;
@@ -36,14 +33,11 @@
     flex-shrink: 0;
 }
 
-/* Response box */
 .Response_Container{
     width: 900px; 
-    max-width: 95%; /* responsive */
+    max-width: 95%;
     background: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     color: black;
