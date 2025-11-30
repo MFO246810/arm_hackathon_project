@@ -2,14 +2,17 @@ import "./query_form.css"
 import { useState } from 'react';
 import Query_bar from "./query_bar"
 import Select_Model from "./select_model"
+import { Save_Response } from "../utils/local_storage";
 
-export default function Query_form({Handle_value, Handle_Loading}){
+export default function Query_form({Handle_Loading}){
     const [model, setModel] = useState("phi3:mini"); 
     const [query, setQuery] = useState("");
 
     const Handle_Submit = async(e) => {
         e.preventDefault();
         console.log("Form data:", { model, query });
+        setModel("phi3:mini")
+        setQuery("")
         Handle_Loading(true)
         try{
             const response = await fetch("/api/call", {
@@ -24,15 +27,6 @@ export default function Query_form({Handle_value, Handle_Loading}){
                 Handle_Loading(false)
                 return;
             }
-
-            Handle_value(prev => [
-                ...prev,
-                {
-                    model_query: query,
-                    model_used: model,
-                    model_response: ""
-                }
-            ]);
             
             const reader = response.body.getReader();
             const decoder = new TextDecoder("utf-8");
@@ -45,14 +39,9 @@ export default function Query_form({Handle_value, Handle_Loading}){
                 if (done) break;
                 const chunk = decoder.decode(value, { stream: true });
                 result += chunk;
-                Handle_value(prev => {
-                    const lastIndex = prev.length - 1;
-
-                    return prev.map((entry, i) =>
-                        i === lastIndex
-                            ? {...entry, model_response: entry.model_response + chunk}: entry);}
-                );
             }
+            
+            Save_Response(query, model, result)
 
         } catch(err){
             console.log(err)

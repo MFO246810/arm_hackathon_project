@@ -11,7 +11,12 @@ export default function Query_Page(){
     useEffect(() => {
         document.body.classList.add("no-scroll");
         return () => document.body.classList.remove("no-scroll");
-    }, []);  
+    }, []);
+    
+    useEffect(() => {
+        let existing_responses = Load_With_Expiry("Model_Responses") || [];
+        setResponses(existing_responses)
+    }, [])
 
     return (
         <>
@@ -29,7 +34,7 @@ export default function Query_Page(){
                     </div>
                 </div>
                 <div className='Query_form'>
-                    <Query_form Handle_value={setResponses} Handle_Loading={setloading}/>
+                    <Query_form Handle_Loading={setloading}/>
                 </div>
             </div>
             
