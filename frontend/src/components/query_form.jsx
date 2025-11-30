@@ -47,7 +47,7 @@ export default function Query_form({Handle_Loading}){
             console.log(err)
         }
         Handle_Loading(false)
-    
+        window.location.reload();
     }
 
     return(
