@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import Query_form from "../components/query_form"
 import "./query_page.css"
 import Display_response from "../components/display_response"
@@ -8,7 +8,10 @@ export default function Query_Page(){
     const [Responses, setResponses] = useState([])
     const [loading, setloading] = useState(false)
 
-
+    useEffect(() => {
+        document.body.classList.add("no-scroll");
+        return () => document.body.classList.remove("no-scroll");
+    }, []);  
 
     return (
         <>
