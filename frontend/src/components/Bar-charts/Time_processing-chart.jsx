@@ -44,7 +44,7 @@ export default function Time_Processing_Chart({ data }) {
           <YAxis
             domain={[0, (dataMax) => dataMax + 30]}
             label={{
-              value: "Time Spent Processing (ms)",
+              value: "Time Spent Processing (s)",
               angle: -90,
               position: "insideLeft",
               dx: -5,
@@ -61,7 +61,7 @@ export default function Time_Processing_Chart({ data }) {
 
           <Bar
             dataKey="Avg_Total_Time"
-            name="Time Spent Processing (ms)"
+            name="Time Spent Processing (s)"
             fill="#6366f1"
             radius={[8, 8, 0, 0]}
             barSize={40}
