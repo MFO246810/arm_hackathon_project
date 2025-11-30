@@ -5,12 +5,10 @@ import Display_response from "../components/display_response"
 
 export default function Query_Page(){
 
-    const [Responses, setResponses] = useState([{
-        model_query: "",
-        model_used: "",
-        model_response: ""
-    }])
+    const [Responses, setResponses] = useState([])
     const [loading, setloading] = useState(false)
+
+
 
     return (
         <>
@@ -21,7 +19,7 @@ export default function Query_Page(){
                             <div className="loader"></div>
                                 ) : (
                                     <>
-                                        {Responses.length > 1 ? (<>{Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}</>):<></>}
+                                        {Responses.length > 0 ? (<>{Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}</>):<></>}
                                     </>
                                 )
                         }
