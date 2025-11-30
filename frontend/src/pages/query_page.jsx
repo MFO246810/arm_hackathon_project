@@ -2,6 +2,7 @@ import { useState, useEffect} from 'react';
 import Query_form from "../components/query_form"
 import "./query_page.css"
 import Display_response from "../components/display_response"
+import { Load_With_Expiry } from '../utils/local_storage';
 
 export default function Query_Page(){
 
