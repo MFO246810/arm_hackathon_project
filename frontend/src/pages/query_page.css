@@ -38,6 +38,7 @@
 /* Response box */
 .Response_Container{
     width: 900px; 
+    height: auto; 
     max-width: 95%; /* responsive */
     background: #fff;
     padding: 20px;
