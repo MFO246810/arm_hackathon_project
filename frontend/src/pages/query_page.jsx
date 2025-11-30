@@ -21,7 +21,7 @@ export default function Query_Page(){
                             <div className="loader"></div>
                                 ) : (
                                     <>
-                                        {Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}
+                                        {Responses.length > 0 ? (<>{Responses.map((res, idx) => (<Display_response key={idx} prop={res} />))}</>):<></>}
                                     </>
                                 )
                         }
