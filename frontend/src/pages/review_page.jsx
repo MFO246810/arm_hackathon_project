@@ -4,7 +4,6 @@ import RAMBarChart from '../components/Bar-charts/ram-bar-chart';
 import CPU_Peak_Bar_Chart from '../components/Bar-charts/cpu-peak-chart';
 import Time_Processing_Chart from '../components/Bar-charts/Time_processing-chart';
 import "./review_page.css"
-import { fakeData } from '../Data/fakedata';
 
 export default function Review_Page(){
 
@@ -38,9 +37,6 @@ export default function Review_Page(){
 
     useEffect(() => {
         fetch_DB_Data()
-        //setDB_Data(fakeData);
-        //set_Graph_Data(fakeData)
-        //setLoading(false)
     }, []);
  
     return(

@@ -2,7 +2,6 @@ import { useEffect, useRef } from "preact/hooks";
 import uPlot from "uplot";
 import "uplot/dist/uPlot.min.css";
 
-// Custom uPlot bar renderer
 function barSeries(size = 0.6) {
   return (u, sidx, i0, i1) => {
     const ctx = u.ctx;
@@ -63,7 +62,7 @@ export function ModelBarChart({ labels, values, title = "Model Comparison" }) {
         {
           label: "Value",
           fill: "#f30707ff",
-          paths: barSeries(0.6), // BAR MODE
+          paths: barSeries(0.6), 
         },
       ],
     };

@@ -28,7 +28,6 @@ from models import MODELS
 
 
 def test_api_Model_Call_not_json():
-    """Test when the request body is not JSON."""
     client = app.test_client()
 
     response = client.post("/api/call", data="not json")

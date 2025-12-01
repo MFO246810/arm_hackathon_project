@@ -42,7 +42,6 @@ class ModelPerformanceTracker:
         self.total_time = time.perf_counter() - self.start_time
 
     def sample(self):
-        """Collect CPU, RAM, and I/O stats without blocking anything."""
         if not self.running:
             return
          

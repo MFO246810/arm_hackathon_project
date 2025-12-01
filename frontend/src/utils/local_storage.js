@@ -17,7 +17,6 @@ function Load_With_Expiry(key) {
     const item = JSON.parse(itemStr);
     const now = Date.now();
 
-    // Compare current time to stored expiry
     if (now > item.expiry) {
         localStorage.removeItem(key);
         return null;
@@ -27,10 +26,8 @@ function Load_With_Expiry(key) {
 }
 
 function Save_Response(query, model, result) {
-    // Load existing array (or empty array if not found/expired)
     let existing = Load_With_Expiry("Model_Responses") || [];
 
-    // Push your new object
     existing.push({
         model_query: query,
         model_used: model,
@@ -38,7 +35,6 @@ function Save_Response(query, model, result) {
         timestamp: Date.now()
     });
 
-    // Save updated array with a fresh expiration
     Save_With_Expiry("Model_Responses", existing);
 }
 
