@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Response, stream_with_context, send_from_directory, abort
+from flask import Flask, request, jsonify, Response, stream_with_context, send_from_directory, abort, send_file
 from src.utils.InitDB import initialize_database
 from src.utils.database import SessionLocal
 from src.DBmodels.models import Query_Data
@@ -112,6 +112,11 @@ def get_results():
     directory = os.path.dirname(path)
     name = os.path.basename(path)
     return send_from_directory(directory, name, as_attachment=True)
+
+@app.route('/download/db', methods=['GET'])
+def download_db():
+    db_path = "/app/Data/performance.db"
+    return send_file(db_path, as_attachment=True)
 
 @app.route("/api/model_data", methods=["GET"])
 def get_DB_data():
