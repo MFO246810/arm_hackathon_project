@@ -113,7 +113,7 @@ def get_results():
     name = os.path.basename(path)
     return send_from_directory(directory, name, as_attachment=True)
 
-@app.route('/download/db', methods=['GET'])
+@app.route('/api/download/db', methods=['GET'])
 def download_db():
     db_path = "/app/Data/performance.db"
     return send_file(db_path, as_attachment=True)
