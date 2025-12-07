@@ -10,7 +10,7 @@ export default function Navbar(){
                     </div>
                     <div className="navbar-item">
                         <div className="navbar-item-center">
-                            <h2 className="navbar-item-center-title"> Alex is a poopy butthole</h2>
+                            <h2 className="navbar-item-center-title"> LLM Tester</h2>
                         </div>
                     </div>
                     <div className="navbar-item">
